@@ -2,77 +2,79 @@
 
 using namespace std;
 
-bool isSortedIncreasing(int arr[], int size) {
+bool isSortedIncreasing(int values[], int size) {
     for (int i = 0; i < size - 1; i++) {
-        if (arr[i] > arr[i + 1]) {
+        if (values[i] > values[i + 1]) {
+            return false;  
+        }
+    }
+    return true;  
+}
+
+bool isSortedDecreasing(int values[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        if (values[i] < values[i + 1]) {
             return false;  
         }
     }
     return true; 
 }
 
-bool isSortedDecreasing(int arr[], int size) {
+bool hasAdjacentDuplicates(int values[], int size) {
     for (int i = 0; i < size - 1; i++) {
-        if (arr[i] < arr[i + 1]) {
-            return false; 
-        }
-    }
-    return true; 
-}
-
-bool hasAdjacentDuplicates(int arr[], int size) {
-    for (int i = 0; i < size - 1; i++) {
-        if (arr[i] == arr[i + 1]) {
-            return true; 
+        if (values[i] == values[i + 1]) {
+            return true;  
         }
     }
     return false; 
 }
 
-bool hasDuplicates(int arr[], int size) {
+bool hasDuplicates(int values[], int size) {
     for (int i = 0; i < size - 1; i++) {
         for (int j = i + 1; j < size; j++) {
-            if (arr[i] == arr[j]) {
-                return true;  
+            if (values[i] == values[j]) {
+                return true; 
             }
         }
     }
-    return false;  
+    return false; 
 }
 
 int main() {
-    const int size = 7;
-    int exampleArrayIncreasing[size] = { 1, 3, 5, 7, 9, 11, 13 }; 
-    int exampleArrayDecreasing[size] = { 13, 11, 9, 7, 5, 3, 1 };  
-    int exampleArrayAdjacentDuplicates[size] = { 2, 4, 6, 6, 8, 10, 12 };  
-    int exampleArrayDuplicates[size] = { 1, 3, 5, 7, 5, 9, 11 }; 
+    const int size = 6;
+    int testArray[size];
 
-    if (isSortedIncreasing(exampleArrayIncreasing, size)) {
-        cout << "The array is sorted in increasing order." << endl;
-    }
-    else {
-        cout << "The array is not sorted in increasing order." << endl;
+    for (int i = 0; i < size; i++) {
+        cout << "Run #" << i << ": ";
+        cin >> testArray[i];
     }
 
-    if (isSortedDecreasing(exampleArrayDecreasing, size)) {
-        cout << "The array is sorted in decreasing order." << endl;
+    if (isSortedIncreasing(testArray, size)) {
+        cout << "The data is increasing." << endl;
     }
     else {
-        cout << "The array is not sorted in decreasing order." << endl;
+        cout << "The data is not increasing." << endl;
     }
 
-    if (hasAdjacentDuplicates(exampleArrayAdjacentDuplicates, size)) {
-        cout << "The array has adjacent duplicates." << endl;
+    if (isSortedDecreasing(testArray, size)) {
+        cout << "The data is decreasing." << endl;
     }
     else {
-        cout << "The array does not have adjacent duplicates." << endl;
+        cout << "The data is not decreasing." << endl;
     }
 
-    if (hasDuplicates(exampleArrayDuplicates, size)) {
-        cout << "The array has duplicates." << endl;
+    if (hasAdjacentDuplicates(testArray, size)) {
+        cout << "The data has adjacent duplicates." << endl;
     }
     else {
-        cout << "The array does not have duplicates." << endl;
+        cout << "The data does not have adjacent duplicates." << endl;
+    }
+
+    if (hasDuplicates(testArray, size)) {
+        cout << "The data has duplicates." << endl;
+    }
+    else {
+        cout << "The data does not have duplicates." << endl;
     }
 
     return 0;
